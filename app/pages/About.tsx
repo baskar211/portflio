@@ -68,17 +68,27 @@ export default function About() {
                 <span className="font-semibold text-gray-900 dark:text-white">
                   Baskar D
                 </span>{' '}
-                — Hi, a Freelance Web Developer, Android Develpor, Video Editor ,
-                Affilate Marketer and Digital Marketer..
+               Hi, I'm Baskar D — a Freelance Full Stack Web Developer, Android & iOS App Developer, Digital Marketing Specialist, Meta Ads Expert, Social Media Manager, Content Creator, and Freelance Consultant.
+
               </p>
             </div>
 
             {/* Stats Grid */}
             <div className="grid grid-cols-3 gap-8 mb-14">
               {[
-                { value: '0', label: 'Years Experience' },
-                { value: '0+', label: 'Projects Done' },
-                { value: '5+', label: 'Happy Clients' },
+              {
+value: '2026',
+label: 'Started Journey',
+},
+{
+value: '10+',
+label: 'Skills Learned',
+},
+{
+value: '5+',
+label: 'Projects Built',
+},
+
               ].map((stat, idx) => (
                 <div key={idx} className="text-center lg:text-left group">
                   <div className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-3 transition-colors duration-300">
@@ -98,7 +108,7 @@ export default function About() {
                   Let&apos;s Talk
                 </div>
                 <div className="text-lg text-gray-600 dark:text-gray-300 group-hover:text-blue-600 transition-colors duration-200 font-medium">
-                  +91 70948 92052
+                  +91 8903352306
                 </div>
               </div>
               <div className="group">
@@ -106,7 +116,7 @@ export default function About() {
                   Email Me
                 </div>
                 <div className="text-lg text-gray-600 dark:text-gray-300 group-hover:text-blue-600 transition-colors duration-200 font-medium">
-                  kondapurambaskar@gmail.com
+                  baskard20521@gmail.com
                 </div>
               </div>
             </div>

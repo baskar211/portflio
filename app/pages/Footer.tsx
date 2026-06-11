@@ -21,8 +21,8 @@ export default function Footer() {
               <span className="text-xl font-bold">D.Baskar</span>
             </div>
             <p className="text-gray-400 leading-relaxed mb-6">
-              Hi, I&apos;m Baskar D — Hi, a Freelance Web Developer, Video Editor,
-              and Digital Marketer.
+             Hi, I'm Baskar D — helping businesses grow through Web Development, App Development, and Digital Marketing.
+
             </p>
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
@@ -101,7 +101,7 @@ export default function Footer() {
                 <div>
                   <div className="text-sm text-gray-400">Email</div>
                   <div className="font-medium hover:text-blue-400 transition-colors duration-200">
-                    kondapurambaskar@example.com
+                    baskard20521@gmail.com
                   </div>
                 </div>
               </div>
@@ -125,7 +125,7 @@ export default function Footer() {
                 <div>
                   <div className="text-sm text-gray-400">Call Today</div>
                   <div className="font-medium hover:text-green-400 transition-colors duration-200">
-                    +91 7094892052
+                    +91 8903352306
                   </div>
                 </div>
               </div>
@@ -155,7 +155,7 @@ export default function Footer() {
                 <div>
                   <div className="text-sm text-gray-400">Location</div>
                   <div className="font-medium hover:text-purple-400 transition-colors duration-200">
-                    Chennai, Tamil Nadu, India
+                    Tiruttani, Tamil Nadu, India
                   </div>
                 </div>
               </div>

@@ -6,31 +6,38 @@ export default function FAQ() {
 
   // Structured FAQ data for better SEO
   const faqs = [
-    {
-      question: 'What web development services do you offer?',
-      answer: 'I build responsive, modern, and high-performance websites using HTML, CSS, JavaScript, React, and other cutting-edge web technologies. I also provide ongoing website maintenance, optimization, and performance enhancement services.',
-    },
-    {
-      question: 'How does your web development process work?',
-      answer: 'We start with a comprehensive consultation to understand your requirements and goals. Then I create a detailed project plan and design mockups for your approval. After confirmation, I develop the website with regular updates, conduct thorough testing, and deliver a fully functional, optimized site.',
-    },
-    {
-      question: 'What is the typical timeline for a web development project?',
-      answer: 'Project duration depends on complexity. Simple websites typically take 1-2 weeks, while more complex projects with custom features may require 3-4 weeks from initial consultation to final delivery.',
-    },
-    {
-      question: 'What materials do I need to provide before starting?',
-      answer: 'To get started efficiently, please provide your brand assets (logo, colors, fonts), content (text, images), project requirements, and any existing website links or references. This helps me understand your vision and accelerate the development process.',
-    },
-    {
-      question: 'Do you offer design revisions?',
-      answer: 'Yes, I provide multiple rounds of revisions during the design phase to ensure the final product perfectly matches your vision and meets your business objectives.',
-    },
-    {
-      question: 'How can I get started with my project?',
-      answer: 'Simply contact me via email or the contact form, share your project details and requirements, and we will schedule a free consultation to discuss your vision and kick off your project.',
-    },
-  ];
+{
+question: 'What services do you provide?',
+answer:
+'I provide Full Stack Web Development, Android & iOS App Development, Digital Marketing, Meta Ads Management, Social Media Management, Content Creation, and Freelance Consulting services for businesses and personal brands.',
+},
+{
+question: 'Can you build a professional website for my business?',
+answer:
+'Yes! I create responsive, modern, fast, and SEO-friendly websites for businesses, startups, personal brands, catering services, shops, and other industries with a professional design and user experience.',
+},
+{
+question: 'Do you run Facebook and Instagram ads?',
+answer:
+'Yes, I specialize in Meta Ads (Facebook & Instagram Ads). I help businesses generate leads, increase sales, improve brand awareness, and reach the right audience with effective ad campaigns.',
+},
+{
+question: 'Do you develop Android & iOS mobile apps?',
+answer:
+'Yes, I develop modern mobile applications for Android and iOS with clean UI, smooth performance, and scalable features based on your business needs.',
+},
+{
+question: 'Can you manage social media for my business?',
+answer:
+'Yes, I help businesses manage their social media by creating content, improving engagement, growing followers, and building a strong online presence.',
+},
+{
+question: 'How can we start working together?',
+answer:
+'Simply contact me with your project details. We will discuss your goals, requirements, budget, and create the best solution for your business growth.',
+},
+];
+
 
   // Generate structured data for SEO
   const faqStructuredData = {

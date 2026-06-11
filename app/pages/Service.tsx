@@ -9,29 +9,44 @@ import Image from '../../public/freelancher.png';
 
 export default function Services() {
   const [openIndex, setOpenIndex] = useState(null);
+const items = [
+{
+title: 'Full Stack Web Developer',
+content:
+'Build modern, responsive, fast, and user-friendly websites with powerful frontend and backend technologies.',
+},
+{
+title: 'Digital Marketing Specialist',
+content:
+'Grow your business online through SEO, branding, lead generation, and smart digital marketing strategies.',
+},
+{
+title: 'Meta Ads Expert',
+content:
+'Run high-converting Facebook and Instagram ad campaigns to generate quality leads and boost sales.',
+},
+{
+title: 'Freelance Consultant',
+content:
+'Provide expert guidance for websites, digital growth, automation, and online business solutions.',
+},
+{
+title: 'Social Media Manager',
+content:
+'Manage and grow social media presence with engaging content, strategy, and audience engagement.',
+},
+{
+title: 'Content Creator',
+content:
+'Create creative and engaging content for social media, branding, and digital platforms.',
+},
+{
+title: 'Android & iOS App Developer',
+content:
+'Develop high-performance Android and iOS mobile applications with modern UI and seamless experience.',
+},
+];
 
-  const items = [
-    {
-      title: 'Web Develpor',
-      content:
-        'Build responsive, fast, and user-friendly websites using HTML, CSS, JavaScript, and React.',
-    },
-    {
-      title: 'Video Editing',
-      content:
-        'Create professional videos for YouTube, social media, or business promotions.',
-    },
-    {
-      title: 'Affilate Marketing',
-      content:
-        'Promote products, drive traffic, and increase sales using smart strategies.',
-    },
-    {
-      title: 'Digital Marketing',
-      content:
-        'Effective digital marketing strategies to grow your brand online.',
-    },
-  ];
 
   return (
     <>
@@ -102,6 +117,8 @@ export default function Services() {
         </motion.div>
       </div>
     </section>
+    
+    
                 </>
   );
 }

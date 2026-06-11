@@ -98,8 +98,17 @@ const withErrorBoundary = (Component) => {
 // Main Hero component with performance optimizations
 const HeroComponent = ({
   name = 'D.Baskar',
-  titles = ['Web Developer', 'Video Editor', 'Digital Marketer'],
-  locationLine = 'Chennai, Tamil Nadu, India',
+  titles = [
+'Full Stack Web Developer',
+'Digital Marketing Specialist',
+'Meta Ads Expert',
+'Freelance Consultant',
+'Social Media Manager',
+'Content Creator',
+'Android & iOS App Developer'
+],
+
+  locationLine = 'tiruttani, Tamil Nadu, India',
   ctaText = 'View Work',
   ctaHref = '/view-work',
   imageUrl = Image,
@@ -210,12 +219,12 @@ const HeroComponent = ({
           transition={{ duration: 0.6, delay: 0.15 }}
           className="flex items-center justify-center"
         >
-          <div className="w-full max-w-sm rounded-2xl shadow-2xl overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 hover:shadow-2xl transition-shadow duration-300">
+          <div className="w-full max-w-sm  rounded-2xl shadow-2xl overflow-hidden bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 hover:shadow-2xl transition-shadow duration-300">
             {imageUrl && !imageError ? (
               <img
                 src={typeof imageUrl === 'string' ? imageUrl : imageUrl?.src}
                 alt={`${name} portrait`}
-                className="w-full h-80 object-cover"
+                className="w-full h-3/4 object-cover translate-y-0 hover:translate-y-1 transition-transform duration-300"
                 loading="lazy"
                 onError={handleImageError}
               />

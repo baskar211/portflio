@@ -3,31 +3,63 @@ import React from 'react';
 import Navbar from '../pages/Navbar';
 
 const caseStudies = [
-  {
-    id: 1,
-    title: 'E-Commerce Website Redesign',
-    description:
-      'A complete redesign of an online store to improve UX, speed, and conversion rate. Built using React & TailwindCSS.',
-    image: '/digital-marketing (3).png',
-    link: '#',
-  },
-  {
-    id: 2,
-    title: 'Portfolio Website for Designer',
-    description:
-      'A modern personal portfolio site with animations and responsive design using Framer Motion and TailwindCSS.',
-    image: '/digital-marketing (1).png',
-    link: '#',
-  },
-  {
-    id: 3,
-    title: 'Restaurant Booking App UI',
-    description:
-      'UI concept for a restaurant table booking platform with smooth transitions and modern layout.',
-    image: '/digital-marketing (2).png',
-    link: '#',
-  },
+{
+id: 1,
+title: 'Business Website Development',
+description:
+'Designed and developed a modern responsive business website with SEO optimization and fast performance.',
+image:
+'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg',
+link: '#',
+},
+{
+id: 2,
+title: 'Meta Ads Lead Generation Campaign',
+description:
+'Managed Facebook & Instagram ad campaigns to improve leads, sales, and customer reach.',
+image:
+'https://images.pexels.com/photos/905163/pexels-photo-905163.jpeg',
+link: '#',
+},
+{
+id: 3,
+title: 'Restaurant & Catering Website',
+description:
+'Created a professional catering website with gallery, menu showcase, and mobile responsive design.',
+image:
+'https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg',
+link: '#',
+},
+{
+id: 4,
+title: 'Portfolio Website Design',
+description:
+'Built a modern portfolio website with animations, clean UI, and responsive layouts.',
+image:
+'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg',
+link: '#',
+},
+{
+id: 5,
+title: 'Social Media Branding',
+description:
+'Created engaging content strategy and social media branding for business growth.',
+image:
+'https://images.pexels.com/photos/5054208/pexels-photo-5054208.jpeg',
+link: '#',
+},
+{
+id: 6,
+title: 'Android & iOS App Development',
+description:
+'Designed and developed modern mobile app UI for Android and iOS platforms.',
+image:
+'https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg',
+link: '#',
+},
 ];
+
+
 
 export default function CaseStudy() {
   return (
