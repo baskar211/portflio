@@ -7,7 +7,11 @@ import Navbar from "@/app/pages/Navbar";
 import ImageWithFallback from "@/components/ImageWithFallback";
 import useSWR from "swr";
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = async (url: string) => {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error("Failed to fetch blogs");
+  return response.json();
+};
 
 export default function BlogListPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");

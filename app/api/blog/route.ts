@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import { Blog } from "@/models/Schema";
+import { blogs as staticBlogs } from "@/data/blog";
 
 export async function GET(request: Request) {
   try {
@@ -19,8 +20,19 @@ export async function GET(request: Request) {
     const blogs = await Blog.find(query).sort(sortOptions);
     return NextResponse.json(blogs);
   } catch (error) {
-    console.error("GET /api/blogs error:", error);
-    return NextResponse.json({ error: "Failed to fetch blogs" }, { status: 500 });
+    console.error("GET /api/blog error:", error);
+    const { searchParams } = new URL(request.url);
+    const category = searchParams.get("category") || "All";
+    const sort = searchParams.get("sort") || "newest";
+    const fallbackBlogs = staticBlogs
+      .filter((blog) => category === "All" || blog.category === category)
+      .sort((first, second) => {
+        if (sort === "oldest") return first.date.localeCompare(second.date);
+        if (sort === "popular") return second.popularity - first.popularity;
+        return second.date.localeCompare(first.date);
+      });
+
+    return NextResponse.json(fallbackBlogs);
   }
 }
 
