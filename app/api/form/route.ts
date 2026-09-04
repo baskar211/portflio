@@ -1,23 +1,22 @@
+// app/api/form/route.ts
 import { NextResponse } from 'next/server';
-import dbConnect from '../../../lib/mongodb';
-import { Form } from '../../../models/Schema';
+import   { Form } from '@/models/Schema'
+import dbConnect from '@/lib/mongodb';
 
+
+
+// GET – if needed for fetching existing entries
 export async function GET() {
-    try {
-        await dbConnect();
-        const forms = await Form.find().sort({ createdAt: -1 });
-        return NextResponse.json(forms);
-    } catch (err) {
-        return NextResponse.json({ error: 'Failed to fetch' }, { status: 500 });
-    }
+  // return existing data
+  return NextResponse.json([]);
 }
 
 export async function POST(req: Request) {
     try {
         await dbConnect();
         const body = await req.json();
-        const form = await Form.create(body);
-        return NextResponse.json(form, { status: 201 });
+        const hireme = await Form.create(body);
+        return NextResponse.json(hireme, { status: 201 });
     } catch (err) {
         return NextResponse.json({ error: 'Failed to save' }, { status: 500 });
     }

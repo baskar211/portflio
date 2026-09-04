@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 // Use react-icons instead of lucide-react to avoid export errors
 import { FiMail, FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi';
 import Link from 'next/link';
+import DriftWall from '../../components/DriftWall';
 
 // Import components normally (remove dynamic imports that cause errors)
 import Navbar from './Navbar';
@@ -11,23 +12,29 @@ import Service from './Service';
 import About from './About';
 import Contact from './Contact';
 import Footer from './Footer';
-
 import Image from '../../public/freelancher.png';
 import FAQ from '../components/FAQs';
 
 // Social links configuration
 const SOCIAL_LINKS = {
-  email: 'mailto:kondapurambaskar@gmail.com',
-  github: 'https://github.com/',
-  linkedin: 'https://linkedin.com/in/baskar_d20521',
-  twitter: 'https://twitter.com/baskar_d20521'
+  email: 'mailto:baskard20521@gmail.com',
+  github: 'https://github.com/baskar211',
+  linkedin: 'https://linkedin.com/in/baskar_d211',
+  twitter: 'https://twitter.com/baskar_d211'
 };
+
+const items = [
+  { image: 'https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg', title: 'Peaks', href: 'https://annam-catering.netlify.app/' },
+  { image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg', title: 'Pup', href: 'https://example.com/two' },
+  { image: 'https://picsum.photos/id/1039/600/400', title: 'Falls', href: 'https://example.com/three' },
+];
 
 export default function HeroSection() {
   return (
     <>
       <Navbar />
       <Hero />
+      <SlideUp />
       <Service />
       <About />
       <FAQ />
@@ -99,16 +106,13 @@ const withErrorBoundary = (Component) => {
 const HeroComponent = ({
   name = 'D.Baskar',
   titles = [
-'Full Stack Web Developer',
-'Digital Marketing Specialist',
-'Meta Ads Expert',
+'React Develpor',
+'Backend Develpor',
+'Full Stack Develpor',
 'Freelance Consultant',
-'Social Media Manager',
-'Content Creator',
-'Android & iOS App Developer'
 ],
 
-  locationLine = 'tiruttani, Tamil Nadu, India',
+  locationLine = 'Tiruttani, Tamil Nadu, India',
   ctaText = 'View Work',
   ctaHref = '/view-work',
   imageUrl = Image,
@@ -240,11 +244,9 @@ const HeroComponent = ({
             )}
 
             <div className="p-6">
-              <Link href="/projects">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white hover:text-blue-500 transition-colors duration-200">
-                  Selected projects
+                  Freelancher 
                 </h3>
-              </Link>
               <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
                 Modern UI, Motion-rich Framer prototypes and responsive websites.
               </p>
@@ -271,3 +273,37 @@ const HeroComponent = ({
 // Wrap with error boundary and memo
 const Hero = withErrorBoundary(memo(HeroComponent));
 export { Hero };
+
+
+
+
+function SlideUp(){
+  return(
+    <div style={{ height: 600 }}>
+  <DriftWall
+  style={{}}
+    items={items}
+    columns={11}
+    tileWidth={200}
+    tileHeight={132}
+    gap={18}
+    tilt={16}
+    turn={-14}
+    perspective={1200}
+    depth={120}
+    speed={42}
+    direction="up"
+    variance={0.45}
+    parallax={0.6}
+    lift={64}
+    fade={0.6}
+    dim={0.55}
+    overlayColor="#060010"
+    radius={14}
+    roll={0}
+    pauseOnHover={false}
+    grayscale={false}
+/>
+</div>
+  )
+}

@@ -1,5 +1,6 @@
-import ComponentWrapper from '../components/admin/AdminDashboard';
+// app/admin/page.tsx
+import AdminDashboard from "@/app/components/admin/AdminDashboard";
 
-export default function Page() {
-  return <ComponentWrapper />;
+export default function AdminPage() {
+  return <AdminDashboard />;
 }

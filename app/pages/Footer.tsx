@@ -21,7 +21,7 @@ export default function Footer() {
               <span className="text-xl font-bold">D.Baskar</span>
             </div>
             <p className="text-gray-400 leading-relaxed mb-6">
-             Hi, I'm Baskar D — helping businesses grow through Web Development, App Development, and Digital Marketing.
+             Hi, I'm Baskar D — a Freelance Full Stack Web Developer and Freelance Consultant.
 
             </p>
             <div className="flex items-center gap-3">
@@ -58,11 +58,11 @@ export default function Footer() {
             <h3 className="font-semibold text-lg mb-6 text-white">Services</h3>
             <ul className="space-y-4">
               {[
-                'Affilate Marketing',
+                'Freelancher Services',
                 'Web Design',
                 'Andriod Development',
-                'Brand Identity',
-                'Social Ads',
+                'Speed Optimation',
+                'Api',
               ].map((service) => (
                 <li key={service}>
                   <a

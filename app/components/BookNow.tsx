@@ -97,7 +97,7 @@ export default function BookOrder() {
             <option value="">Select Service</option>
             <option>Website Design</option>
             <option>Web Development</option>
-            <option>SEO Optimization</option>
+            <option>Speed Optimization</option>
           </select>
 
           <select

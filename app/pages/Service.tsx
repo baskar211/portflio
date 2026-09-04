@@ -10,41 +10,51 @@ import Image from '../../public/freelancher.png';
 export default function Services() {
   const [openIndex, setOpenIndex] = useState(null);
 const items = [
-{
-title: 'Full Stack Web Developer',
-content:
-'Build modern, responsive, fast, and user-friendly websites with powerful frontend and backend technologies.',
-},
-{
-title: 'Digital Marketing Specialist',
-content:
-'Grow your business online through SEO, branding, lead generation, and smart digital marketing strategies.',
-},
-{
-title: 'Meta Ads Expert',
-content:
-'Run high-converting Facebook and Instagram ad campaigns to generate quality leads and boost sales.',
-},
-{
-title: 'Freelance Consultant',
-content:
-'Provide expert guidance for websites, digital growth, automation, and online business solutions.',
-},
-{
-title: 'Social Media Manager',
-content:
-'Manage and grow social media presence with engaging content, strategy, and audience engagement.',
-},
-{
-title: 'Content Creator',
-content:
-'Create creative and engaging content for social media, branding, and digital platforms.',
-},
-{
-title: 'Android & iOS App Developer',
-content:
-'Develop high-performance Android and iOS mobile applications with modern UI and seamless experience.',
-},
+  {
+    title: 'Full Stack Web Developer',
+    content:
+      'Build modern, responsive, fast, and user-friendly websites with powerful frontend and backend technologies.',
+  },
+  {
+    title: 'Freelance Consultant',
+    content:
+      'Provide expert guidance for websites, digital growth, automation, and online business solutions.',
+  },
+  {
+    title: 'Frontend Development',
+    content:
+      'Create interactive and responsive user interfaces using HTML, CSS, JavaScript, React, and modern UI frameworks.',
+  },
+  {
+    title: 'Backend Development',
+    content:
+      'Develop robust server-side applications, RESTful APIs, and database management with Node.js, Python, or PHP.',
+  },
+  {
+    title: 'E-commerce Solutions',
+    content:
+      'Build and customize online stores with payment gateways, product management, and seamless checkout experiences.',
+  },
+  {
+    title: 'Website Maintenance & Support',
+    content:
+      'Keep your website secure, updated, and performing optimally with regular maintenance, backups, and bug fixes.',
+  },
+  {
+    title: 'API Development & Integration',
+    content:
+      'Design and integrate third-party APIs or build custom APIs to connect services and automate workflows.',
+  },
+  {
+    title: 'Performance Optimization',
+    content:
+      'Improve website speed, SEO, and overall performance through code optimization, caching, and best practices.',
+  },
+  {
+    title: 'Technical Consultation',
+    content:
+      'Get expert advice on architecture, technology stack selection, and digital strategy for your project.',
+  },
 ];
 
 

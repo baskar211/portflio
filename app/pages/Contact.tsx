@@ -2,13 +2,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from '../../public/freelancher.png';
-
 import Navbar from './Navbar';
-import { useEffect } from 'react';
 import axios from 'axios';
 
-
-const API_URL = '/api/';
+// ✅ Environment variable – deployment-ல் வேலை செய்யும்
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api/';
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -18,60 +16,47 @@ export default function Contact() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const services = [
     'Web Development',
-    'Video Editing',
+    'Services',
     'Branding',
     'Consulting',
   ];
 
-  useEffect(() => {
-    const fectchdata = async () => {
-      const response = await axios.get(`${API_URL}form`)
-    }
+  // ❌ REMOVED pointless GET useEffect – தேவையில்லை
 
-    fectchdata();
-
-
-  }, [])
-
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      const response = await axios.post(`${API_URL}form`, form)
-
+      const response = await axios.post(`${API_URL}form`, form);
       alert(`🙏 நன்றி ${form.name}! உங்கள் order successfully submit ஆனது.`);
-
-      setForm({
-        name: "",
-        email: "",
-        message: "",
-        service: ""
-      })
-    }
-    catch (err) {
+      setForm({ name: '', email: '', message: '', service: '' });
+      setSubmitted(true);
+    } catch (err) {
       alert('❌ Failed to submit order. Please try again.');
-
+      console.error(err);
+    } finally {
+      setLoading(false);
     }
-  }
-
+  };
 
   return (
     <>
       <div className='mb-30'>
         <Navbar />
-
       </div>
-      <section className=" overflow-x-hidden bg-gradient-to-br from-purple-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20 px-4 sm:px-6 lg:px-12">
+      <section className="overflow-x-hidden bg-gradient-to-br from-purple-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-20 px-4 sm:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          {/* Left Image Section */}
+          {/* Left Image – unchanged */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -80,14 +65,8 @@ export default function Contact() {
           >
             <div className="relative w-full max-w-xs sm:max-w-sm">
               <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-100 dark:border-gray-700">
-                <img
-                  src={Image.src}
-                  alt="Portrait"
-                  className="w-full h-auto object-cover"
-                />
+                <img src={Image.src} alt="Portrait" className="w-full h-auto object-cover" />
               </div>
-
-              {/* Floating Hi badge */}
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
@@ -95,15 +74,13 @@ export default function Contact() {
                 className="absolute -left-6 -bottom-6 sm:-left-8 sm:-bottom-8"
               >
                 <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-purple-600 flex items-center justify-center shadow-lg ring-4 ring-white dark:ring-gray-800">
-                  <span className="text-white font-semibold text-xl sm:text-2xl">
-                    Hi
-                  </span>
+                  <span className="text-white font-semibold text-xl sm:text-2xl">Hi</span>
                 </div>
               </motion.div>
             </div>
           </motion.div>
 
-          {/* Right Form Section */}
+          {/* Right Form – unchanged */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -119,13 +96,9 @@ export default function Contact() {
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name & Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label
-                    htmlFor="name"
-                    className="text-sm text-gray-700 dark:text-purple-400 block mb-2"
-                  >
+                  <label htmlFor="name" className="text-sm text-gray-700 dark:text-purple-400 block mb-2">
                     Name
                   </label>
                   <input
@@ -138,12 +111,8 @@ export default function Contact() {
                     required
                   />
                 </div>
-
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="text-sm text-gray-700 dark:text-purple-400 block mb-2"
-                  >
+                  <label htmlFor="email" className="text-sm text-gray-700 dark:text-purple-400 block mb-2">
                     Email
                   </label>
                   <input
@@ -159,12 +128,8 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Service Dropdown */}
               <div>
-                <label
-                  htmlFor="service"
-                  className="text-sm text-gray-700 dark:text-purple-400 block mb-2"
-                >
+                <label htmlFor="service" className="text-sm text-gray-700 dark:text-purple-400 block mb-2">
                   Service Needed
                 </label>
                 <select
@@ -176,19 +141,13 @@ export default function Contact() {
                 >
                   <option value="">Select...</option>
                   {services.map((s) => (
-                    <option key={s} value={s}>
-                      {s}
-                    </option>
+                    <option key={s} value={s}>{s}</option>
                   ))}
                 </select>
               </div>
 
-              {/* Message */}
               <div>
-                <label
-                  htmlFor="message"
-                  className="text-sm text-gray-700 dark:text-purple-400 block mb-2"
-                >
+                <label htmlFor="message" className="text-sm text-gray-700 dark:text-purple-400 block mb-2">
                   What Can I Help You With?
                 </label>
                 <textarea
@@ -201,14 +160,13 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Submit Button */}
               <div>
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-3 px-10 py-3 rounded-full border-2 border-purple-600 text-purple-600 font-semibold hover:bg-purple-600 hover:text-white transition-all duration-300"
-                  aria-busy={submitted}
+                  disabled={loading}
+                  className="inline-flex items-center justify-center gap-3 px-10 py-3 rounded-full border-2 border-purple-600 text-purple-600 font-semibold hover:bg-purple-600 hover:text-white transition-all duration-300 disabled:opacity-50"
                 >
-                  {submitted ? 'Sending...' : 'SUBMIT'}
+                  {loading ? 'Sending...' : 'SUBMIT'}
                 </button>
               </div>
             </form>

@@ -5,39 +5,43 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
 
   // Structured FAQ data for better SEO
-  const faqs = [
-{
-question: 'What services do you provide?',
-answer:
-'I provide Full Stack Web Development, Android & iOS App Development, Digital Marketing, Meta Ads Management, Social Media Management, Content Creation, and Freelance Consulting services for businesses and personal brands.',
-},
-{
-question: 'Can you build a professional website for my business?',
-answer:
-'Yes! I create responsive, modern, fast, and SEO-friendly websites for businesses, startups, personal brands, catering services, shops, and other industries with a professional design and user experience.',
-},
-{
-question: 'Do you run Facebook and Instagram ads?',
-answer:
-'Yes, I specialize in Meta Ads (Facebook & Instagram Ads). I help businesses generate leads, increase sales, improve brand awareness, and reach the right audience with effective ad campaigns.',
-},
-{
-question: 'Do you develop Android & iOS mobile apps?',
-answer:
-'Yes, I develop modern mobile applications for Android and iOS with clean UI, smooth performance, and scalable features based on your business needs.',
-},
-{
-question: 'Can you manage social media for my business?',
-answer:
-'Yes, I help businesses manage their social media by creating content, improving engagement, growing followers, and building a strong online presence.',
-},
-{
-question: 'How can we start working together?',
-answer:
-'Simply contact me with your project details. We will discuss your goals, requirements, budget, and create the best solution for your business growth.',
-},
+ const faqs = [
+  {
+    question: 'What services do you provide?',
+    answer:
+      'I provide Full Stack Web Development, Frontend & Backend Development, E-commerce Solutions, Website Maintenance & Support, API Development & Integration, Performance Optimization, and Freelance Technical Consulting.',
+  },
+  {
+    question: 'Can you build a professional website for my business?',
+    answer:
+      'Yes! I create responsive, modern, fast, and SEO-friendly websites for businesses, startups, personal brands, e-commerce stores, and more. From simple landing pages to complex web applications.',
+  },
+  {
+    question: 'Do you build e-commerce websites or online stores?',
+    answer:
+      'Absolutely. I develop complete e-commerce solutions with product management, payment gateway integration, shopping cart, order tracking, and a seamless checkout experience tailored to your business.',
+  },
+  {
+    question: 'Can you integrate third-party services or APIs into my website?',
+    answer:
+      'Yes, I can integrate payment gateways, CRM systems, email services, social logins, maps, and other third-party APIs. I also build custom RESTful APIs for your own applications.',
+  },
+  {
+    question: 'Do you provide ongoing maintenance and support?',
+    answer:
+      'Yes, I offer website maintenance packages that include security updates, bug fixes, performance monitoring, backups, and content updates to keep your site running smoothly.',
+  },
+  {
+    question: 'Can you help improve my current website speed and performance?',
+    answer:
+      'Definitely. I analyze your existing website and optimize code, images, caching, server configuration, and database queries to significantly improve loading times and user experience.',
+  },
+  {
+    question: 'How can we start working together?',
+    answer:
+      'Simply contact me with your project details. We’ll discuss your goals, requirements, budget, and timeline, then I’ll provide a clear plan and quote for your project.',
+  },
 ];
-
 
   // Generate structured data for SEO
   const faqStructuredData = {

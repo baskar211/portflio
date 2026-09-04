@@ -14,9 +14,11 @@ export default function About() {
       color: 'blue-50',
       icon: (
         <>
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-          <rect x="2" y="9" width="4" height="12" />
-          <circle cx="4" cy="4" r="2" />
+          <>
+  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+  <path d="M9.5 8.5c-.5 0-1 .5-1.5 1s-.5 1.5 0 2.5 1 2.5 2 3.5 2 2 3.5 2 2-.5 2.5-1.5 1-1.5.5-2.5" />
+</>
+          
         </>
       ),
     },
@@ -25,9 +27,11 @@ export default function About() {
       color: 'purple-50',
       icon: (
         <>
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-          <rect x="2" y="9" width="4" height="12" />
-          <circle cx="4" cy="4" r="2" />
+          <>
+  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+</>
         </>
       ),
     },
@@ -68,7 +72,7 @@ export default function About() {
                 <span className="font-semibold text-gray-900 dark:text-white">
                   Baskar D
                 </span>{' '}
-               Hi, I'm Baskar D — a Freelance Full Stack Web Developer, Android & iOS App Developer, Digital Marketing Specialist, Meta Ads Expert, Social Media Manager, Content Creator, and Freelance Consultant.
+               Hi, I'm Baskar D — a Freelance Full Stack Web Developer and Consultant specializing in frontend, backend, e-commerce, performance optimization, API integration, and website maintenance.
 
               </p>
             </div>
@@ -143,7 +147,7 @@ label: 'Projects Built',
                 ))}
               </div>
 
-              <Link href={'explore-work'}>
+              <Link href={'view-work'}>
                 <button className="px-10 py-5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold text-sm tracking-widest uppercase rounded-xl hover:bg-blue-600 dark:hover:bg-gray-900 hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-lg">
                   Explore My Work
                 </button>
