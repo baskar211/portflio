@@ -18,9 +18,15 @@ export async function GET(request: Request) {
     else if (sort === "popular") sortOptions = { popularity: -1 };
 
     const blogs = await Blog.find(query).sort(sortOptions);
-    return NextResponse.json(blogs);
+    return NextResponse.json(blogs, {
+      headers: { "X-Database-Status": "connected" },
+    });
   } catch (error) {
-    console.error("GET /api/blog error:", error);
+    console.error("GET /api/blog database error:", {
+      name: error instanceof Error ? error.name : "UnknownError",
+      message: error instanceof Error ? error.message : String(error),
+      code: error && typeof error === "object" && "code" in error ? error.code : undefined,
+    });
     const { searchParams } = new URL(request.url);
     const category = searchParams.get("category") || "All";
     const sort = searchParams.get("sort") || "newest";
@@ -32,7 +38,9 @@ export async function GET(request: Request) {
         return second.date.localeCompare(first.date);
       });
 
-    return NextResponse.json(fallbackBlogs);
+    return NextResponse.json(fallbackBlogs, {
+      headers: { "X-Database-Status": "fallback" },
+    });
   }
 }
 

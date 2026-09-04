@@ -23,8 +23,14 @@ async function dbConnect() {
       bufferCommands: false,
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
-      return mongoose;
+    cached.promise = mongoose.connect(MONGODB_URI, opts).catch((error) => {
+      console.error("MongoDB connection failed:", {
+        name: error instanceof Error ? error.name : "UnknownError",
+        message: error instanceof Error ? error.message : String(error),
+        code: error && typeof error === "object" && "code" in error ? error.code : undefined,
+      });
+      cached.promise = null;
+      throw error;
     });
   }
 

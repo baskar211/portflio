@@ -9,7 +9,21 @@ import useSWR from "swr";
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
-  if (!response.ok) throw new Error("Failed to fetch blogs");
+  if (!response.ok) {
+    const body = await response.text();
+    console.error("Blog API request failed:", {
+      status: response.status,
+      statusText: response.statusText,
+      body,
+    });
+    throw new Error(`Blog API request failed with status ${response.status}`);
+  }
+  const databaseStatus = response.headers.get("X-Database-Status");
+  if (databaseStatus === "fallback") {
+    console.error("MongoDB is not connected. Showing static blog data.");
+  } else if (databaseStatus === "connected") {
+    console.info("MongoDB connected. Blog data loaded from database.");
+  }
   return response.json();
 };
 
