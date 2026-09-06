@@ -2,20 +2,31 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/app/pages/Navbar";
 import ProjectDescription from "@/app/components/ProjectDescription";
+import dbConnect from "@/lib/mongodb";
+import { Project } from "@/models/Schema";
+import { projects as staticProjects } from "@/data/projects";
 
 async function getProject(slug: string) {
-  const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL;
-  const vercelUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null;
-  const baseUrl = configuredUrl || vercelUrl || "http://localhost:3000";
-
   try {
-    const response = await fetch(`${baseUrl}/api/projects/${encodeURIComponent(slug)}`, { cache: "no-store" });
-    if (!response.ok) return null;
-    return response.json();
+    await dbConnect();
+    const project = await Project.findOne({ slug }).lean();
+    if (project) return JSON.parse(JSON.stringify(project));
   } catch (error) {
     console.error("Project detail fetch failed:", error);
-    return null;
   }
+
+  const fallback = staticProjects.find((item) => item.slug === slug);
+  if (!fallback) return null;
+  return {
+    slug: fallback.slug,
+    title: fallback.name,
+    desc: fallback.description,
+    tech: fallback.technologies.join(", "),
+    status: "Completed",
+    live: fallback.live,
+    price: fallback.price,
+    img: fallback.image,
+  };
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -28,7 +39,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <Navbar />
       <main className="min-h-screen bg-gray-50 px-4 pb-16 pt-32">
         <article className="mx-auto max-w-5xl overflow-hidden rounded-2xl bg-white shadow-lg">
-          <img src={project.img} alt={project.title} className="h-72 w-full object-cover md:h-96" />
+          <img src={project.img || "/freelancher.png"} alt={project.title} className="h-72 w-full object-cover md:h-96" />
           <div className="p-6 md:p-10">
             <div className="mb-4 flex flex-wrap items-center gap-3 text-sm">
               <span className="rounded-full bg-indigo-100 px-3 py-1 font-medium text-indigo-700">{project.tech}</span>
@@ -36,7 +47,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </div>
             <h1 className="mb-4 text-4xl font-bold text-gray-900">{project.title}</h1>
             <div className="mb-8">
-              <ProjectDescription description={project.desc} />
+              <ProjectDescription description={String(project.desc || "Project details coming soon.")} />
             </div>
             <div className="flex flex-wrap items-center gap-5">
               <span className="text-xl font-bold text-indigo-600">{project.price}</span>

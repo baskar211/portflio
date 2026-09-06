@@ -262,7 +262,7 @@ export default function ViewWork() {
 
           {!isLoading && !error && projects.length > 0 && (
             <>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {projects.map((project: any, index: number) => (
                   <Card key={project.slug} project={project} index={index} />
                 ))}
@@ -323,16 +323,16 @@ export default function ViewWork() {
 // ---------- CARD COMPONENT (unchanged) ----------
 function Card({ project, index }: any) {
   return (
-    <Link href={`/projects/${project.slug}`}>
+    <Link href={`/projects/${encodeURIComponent(project.slug)}`} className="block h-full min-w-0">
       <div
-        className="cursor-pointer bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border group hover:-translate-y-2 opacity-0 animate-fadeInUp"
+        className="flex h-full min-w-0 cursor-pointer flex-col overflow-hidden rounded-2xl border bg-white shadow-md transition-all duration-300 group-hover:-translate-y-2 hover:shadow-2xl opacity-0 animate-fadeInUp"
         style={{ animationDelay: `${index * 80}ms`, animationFillMode: "forwards" }}
       >
-        <div className="overflow-hidden">
+        <div className="h-56 shrink-0 overflow-hidden">
           <img
             src={project.img}
             alt={project.title}
-            className="w-full h-56 object-cover group-hover:scale-105 transition duration-500"
+            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.src =
@@ -341,7 +341,7 @@ function Card({ project, index }: any) {
           />
         </div>
 
-        <div className="p-5">
+        <div className="flex flex-1 flex-col p-5">
           <div className="flex justify-between items-center mb-4">
             <span className="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full font-medium">
               {project.tech}
@@ -356,7 +356,7 @@ function Card({ project, index }: any) {
             {project.desc.replace(/\*\*/g, "").replace(/\s+[*-]\s+/g, " ")}
           </p>
 
-          <div className="flex justify-between items-center">
+          <div className="mt-auto flex items-center justify-between gap-3">
             <span className="font-semibold text-indigo-600">{project.price}</span>
             <span className="text-indigo-600 font-semibold group-hover:underline">
               View Project →

