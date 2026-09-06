@@ -1,25 +1,23 @@
 "use client";
-import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const ProtectedRoute = ({ children }) => {
     const router = useRouter();
 
-    // Evaluate authorization immediately
-    const [isAuthorized] = useState(() => {
-        if (typeof window !== 'undefined') {
-            return sessionStorage.getItem("isAdmin") === "true";
-        }
-        return false;
-    });
+    const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
 
     useEffect(() => {
-        if (!isAuthorized) {
-            router.replace('/admin-login');
-        }
-    }, [isAuthorized, router]);
+        fetch("/api/admin/session")
+            .then((response) => response.json())
+            .then(({ authenticated }) => {
+                if (authenticated) setIsAuthorized(true);
+                else router.replace("/admin-login");
+            })
+            .catch(() => router.replace("/admin-login"));
+    }, [router]);
 
-    if (!isAuthorized) {
+    if (isAuthorized !== true) {
         return null;
     }
 

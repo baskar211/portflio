@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect } from "react";
 import useSWR from "swr";
+import Link from "next/link";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -255,6 +256,13 @@ export default function BlogManager() {
                     >
                       Delete
                     </button>
+                    <Link
+                      href={`/blog/${blog.slug}`}
+                      target="_blank"
+                      className="text-gray-600 hover:underline"
+                    >
+                      View
+                    </Link>
                   </td>
                 </tr>
               ))}

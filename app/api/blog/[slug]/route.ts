@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import { Blog } from "@/models/Schema";
+import { isAdminAuthenticated } from "@/lib/admin-auth";
 
 export async function GET(
   request: Request,
@@ -25,6 +26,7 @@ export async function PUT(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    if (!(await isAdminAuthenticated())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     const { slug } = await params;
     await dbConnect();
     const body = await request.json();
@@ -47,6 +49,7 @@ export async function DELETE(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
+    if (!(await isAdminAuthenticated())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     const { slug } = await params;
     await dbConnect();
     const deleted = await Blog.findOneAndDelete({ slug });

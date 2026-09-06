@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import { Blog } from "@/models/Schema";
 import { blogs as staticBlogs } from "@/data/blog";
+import { isAdminAuthenticated } from "@/lib/admin-auth";
 
 export async function GET(request: Request) {
   try {
@@ -18,8 +19,23 @@ export async function GET(request: Request) {
     else if (sort === "popular") sortOptions = { popularity: -1 };
 
     const blogs = await Blog.find(query).sort(sortOptions);
-    return NextResponse.json(blogs, {
-      headers: { "X-Database-Status": "connected" },
+    if (blogs && blogs.length > 0) {
+      return NextResponse.json(blogs, {
+        headers: { "X-Database-Status": "connected" },
+      });
+    }
+
+    // Fallback to static dummy blogs when database is empty
+    const fallbackBlogs = staticBlogs
+      .filter((blog) => category === "All" || blog.category === category)
+      .sort((first, second) => {
+        if (sort === "oldest") return first.date.localeCompare(second.date);
+        if (sort === "popular") return second.popularity - first.popularity;
+        return second.date.localeCompare(first.date);
+      });
+
+    return NextResponse.json(fallbackBlogs, {
+      headers: { "X-Database-Status": "fallback-empty" },
     });
   } catch (error) {
     console.error("GET /api/blog database error:", {
@@ -46,6 +62,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
+    if (!(await isAdminAuthenticated())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     await dbConnect();
     const body = await request.json();
     if (!body.slug) {

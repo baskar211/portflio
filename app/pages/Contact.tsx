@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 import axios from 'axios';
 
 // ✅ Environment variable – deployment-ல் வேலை செய்யும்
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api/';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || '/api/';
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -41,9 +41,10 @@ export default function Contact() {
       alert(`🙏 நன்றி ${form.name}! உங்கள் order successfully submit ஆனது.`);
       setForm({ name: '', email: '', message: '', service: '' });
       setSubmitted(true);
-    } catch (err) {
-      alert('❌ Failed to submit order. Please try again.');
-      console.error(err);
+    } catch (err: any) {
+      const errorMsg = err.response?.data?.error || err.response?.data?.details || 'Failed to submit order. Please try again.';
+      alert(`❌ ${errorMsg}`);
+      console.error("Contact form error:", err);
     } finally {
       setLoading(false);
     }

@@ -5,7 +5,7 @@ export interface BlogDocument {
   title: string;
   slug: string;
   description: string;
-  content: string;
+  content: any;
   category: string;
   image: string;
   date: Date;
@@ -40,7 +40,7 @@ const OrderSchema = new mongoose.Schema({
 const FormSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
-  service: { type: String, required: true },
+  service: { type: String, default: 'General Inquiry' },
   message: { type: String, required: false },
   createdAt: { type: Date, default: Date.now }
 });
@@ -57,7 +57,7 @@ const BlogSchema = new mongoose.Schema<BlogDocument>({
   title: { type: String, required: true },
   slug: { type: String, required: true, unique: true },
   description: { type: String, required: true },
-  content: { type: String, required: true },
+  content: { type: mongoose.Schema.Types.Mixed, required: true },
   category: { type: String, required: true },
   image: { type: String, required: true },
   date: { type: Date, default: Date.now },
