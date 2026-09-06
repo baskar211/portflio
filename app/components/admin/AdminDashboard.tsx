@@ -4,9 +4,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import BlogManager from "./BlogManager";
+import ProjectManager from "./ProjectManager";
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState("blogs");
+  const [activeTab, setActiveTab] = useState("projects");
 
   return (
     <div className="p-6">
@@ -29,10 +30,16 @@ export default function AdminDashboard() {
         >
           Manage Blogs
         </button>
-        {/* You can add more tabs: Orders, Projects, etc. */}
+        <button
+          onClick={() => setActiveTab("projects")}
+          className={`py-2 px-4 ${activeTab === "projects" ? "border-b-2 border-indigo-600 text-indigo-600 font-semibold" : "text-gray-500"}`}
+        >
+          Manage Projects
+        </button>
       </div>
 
       {activeTab === "blogs" && <BlogManager />}
+      {activeTab === "projects" && <ProjectManager />}
     </div>
   );
 }

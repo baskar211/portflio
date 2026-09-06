@@ -110,17 +110,7 @@ export default function ViewWork() {
       </div>
 
       {/* Circular Gallery (unchanged) */}
-      <div style={{ height: "600px", position: "relative" }}>
-        <CircularGallery
-          bend={1}
-          textColor="#ffffff"
-          borderRadius={0.05}
-          scrollEase={0.05}
-          fontUrl=""
-          font="bold 30px Orbitron"
-          scrollSpeed={2}
-        />
-      </div>
+      
 
       {/* ---------- FILTER & SORT SECTION ---------- */}
       <section className="py-6 bg-gray-50 border-b sticky top-0 z-10 shadow-sm">
@@ -153,12 +143,7 @@ export default function ViewWork() {
               </svg>
             </div>
 
-            <button
-              onClick={clearAllFilters}
-              className="text-sm text-red-500 hover:text-red-700 font-medium flex items-center gap-1 px-3 py-1 rounded-full hover:bg-red-50 transition"
-            >
-              ✕ Clear All Filters
-            </button>
+           
           </div>
 
           {/* Row 2: Category Buttons */}
@@ -249,7 +234,7 @@ export default function ViewWork() {
       </section>
 
       {/* ---------- PROJECT GRID ---------- */}
-      <section id="portfolio" className="py-12 bg-gradient-to-b from-gray-50 to-white">
+      <section id="portfolio" className="py-12 bg-linear-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4">
           {isLoading && (
             <div className="text-center py-16">
@@ -367,8 +352,8 @@ function Card({ project, index }: any) {
           </div>
 
           <h3 className="text-xl font-bold text-gray-800 mb-2">{project.title}</h3>
-          <p className="text-gray-600 text-sm mb-5 leading-relaxed line-clamp-2">
-            {project.desc}
+          <p className="mb-5 line-clamp-3 text-sm leading-relaxed text-gray-600">
+            {project.desc.replace(/\*\*/g, "").replace(/\s+[*-]\s+/g, " ")}
           </p>
 
           <div className="flex justify-between items-center">

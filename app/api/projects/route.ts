@@ -95,6 +95,9 @@ export async function POST(request: Request) {
     if (!(await isAdminAuthenticated())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     await dbConnect();
     const body = await request.json();
+    if (typeof body.img === "string" && body.img.startsWith("data:") && body.img.length > 3_000_000) {
+      return NextResponse.json({ error: "Image must be 2 MB or smaller" }, { status: 413 });
+    }
     if (!body.slug && body.title) {
       body.slug = body.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
     }

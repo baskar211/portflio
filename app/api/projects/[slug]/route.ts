@@ -46,7 +46,11 @@ export async function PUT(request: Request, { params }: { params: Promise<{ slug
     if (!(await isAdminAuthenticated())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     const { slug } = await params;
     await dbConnect();
-    const updated = await Project.findOneAndUpdate({ slug }, await request.json(), {
+    const body = await request.json();
+    if (typeof body.img === "string" && body.img.startsWith("data:") && body.img.length > 3_000_000) {
+      return NextResponse.json({ error: "Image must be 2 MB or smaller" }, { status: 413 });
+    }
+    const updated = await Project.findOneAndUpdate({ slug }, body, {
       new: true,
       runValidators: true,
     });

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/app/pages/Navbar";
+import ProjectDescription from "@/app/components/ProjectDescription";
 
 async function getProject(slug: string) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
@@ -26,7 +27,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               <span className="font-semibold text-green-600">{project.status}</span>
             </div>
             <h1 className="mb-4 text-4xl font-bold text-gray-900">{project.title}</h1>
-            <p className="mb-8 max-w-3xl text-lg leading-8 text-gray-600">{project.desc}</p>
+            <div className="mb-8">
+              <ProjectDescription description={project.desc} />
+            </div>
             <div className="flex flex-wrap items-center gap-5">
               <span className="text-xl font-bold text-indigo-600">{project.price}</span>
               {project.live && project.live !== "#" && <a href={project.live} target="_blank" rel="noreferrer" className="rounded-lg bg-indigo-600 px-5 py-3 font-semibold text-white hover:bg-indigo-700">Open live project</a>}
