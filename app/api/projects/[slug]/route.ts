@@ -34,6 +34,23 @@ export async function GET(
 
     return NextResponse.json(project);
   } catch (error) {
+    const { slug } = await params;
+    const fallback = staticProjects.find((item) => item.slug === slug);
+    if (fallback) {
+      return NextResponse.json({
+        slug: fallback.slug,
+        title: fallback.name,
+        desc: fallback.description,
+        tech: fallback.technologies.join(", "),
+        status: "Completed",
+        live: fallback.live,
+        price: fallback.price,
+        img: fallback.image,
+        category: fallback.slug,
+        packages: fallback.packages,
+        testimonial: fallback.testimonial,
+      });
+    }
     return NextResponse.json(
       { error: "Failed to fetch project" },
       { status: 500 }

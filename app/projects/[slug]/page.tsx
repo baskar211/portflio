@@ -4,10 +4,18 @@ import Navbar from "@/app/pages/Navbar";
 import ProjectDescription from "@/app/components/ProjectDescription";
 
 async function getProject(slug: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-  const response = await fetch(`${baseUrl}/api/projects/${slug}`, { cache: "no-store" });
-  if (!response.ok) return null;
-  return response.json();
+  const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const vercelUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null;
+  const baseUrl = configuredUrl || vercelUrl || "http://localhost:3000";
+
+  try {
+    const response = await fetch(`${baseUrl}/api/projects/${encodeURIComponent(slug)}`, { cache: "no-store" });
+    if (!response.ok) return null;
+    return response.json();
+  } catch (error) {
+    console.error("Project detail fetch failed:", error);
+    return null;
+  }
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
