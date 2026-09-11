@@ -14,16 +14,22 @@ export default function AdminLogin() {
         setIsSubmitting(true);
         setError("");
 
-        const response = await fetch("/api/admin/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ loginId, password }),
-        });
+        try {
+            const response = await fetch("/api/admin/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ loginId, password }),
+            });
+            const result = await response.json().catch(() => ({}));
 
-        if (response.ok) {
-            navigate.push("/admin");
-        } else {
-            setError("Invalid login ID or password");
+            if (response.ok) {
+                navigate.push("/admin");
+            } else {
+                setError(result.error || "Unable to sign in");
+            }
+        } catch {
+            setError("Unable to reach the login server");
+        } finally {
             setIsSubmitting(false);
         }
     }
