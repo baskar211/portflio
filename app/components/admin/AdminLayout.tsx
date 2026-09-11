@@ -23,6 +23,7 @@ export default function AdminLayout({ children }) {
           <li><Link href="/admin/projects/new">Create project</Link></li>
           <li><Link href="/admin/orders">Orders</Link></li>
           <li><Link href="/admin/forms">Contact forms</Link></li>
+          <li><Link href="/admin/settings">Admin settings</Link></li>
           <li><button type="button" onClick={logout}>Log out</button></li>
         </ul>
       </aside>

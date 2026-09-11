@@ -27,6 +27,13 @@ export interface ProjectDocument {
   createdAt: Date;
 }
 
+export interface AdminDocument {
+  loginId: string;
+  passwordHash: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 // --- Existing schemas ---
 const OrderSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -78,6 +85,13 @@ const ProjectSchema = new mongoose.Schema<ProjectDocument>({
   createdAt: { type: Date, default: Date.now },
 });
 
+const AdminSchema = new mongoose.Schema<AdminDocument>({
+  loginId: { type: String, required: true, unique: true, trim: true },
+  passwordHash: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
+
 // --- Exports ---
 export const Order = mongoose.models.Order || mongoose.model('Order', OrderSchema);
 export const Form = mongoose.models.Form || mongoose.model('Form', FormSchema);
@@ -89,6 +103,10 @@ export const Blog =
 export const Project =
   (mongoose.models.Project as mongoose.Model<ProjectDocument>) ||
   mongoose.model<ProjectDocument>("Project", ProjectSchema);
+
+export const Admin =
+  (mongoose.models.Admin as mongoose.Model<AdminDocument>) ||
+  mongoose.model<AdminDocument>("Admin", AdminSchema);
 
 
 

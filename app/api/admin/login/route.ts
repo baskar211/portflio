@@ -11,7 +11,7 @@ export async function POST(request: Request) {
   const loginId = typeof body.loginId === "string" ? body.loginId : "";
   const password = typeof body.password === "string" ? body.password : "";
 
-  if (!verifyCredentials(loginId, password)) {
+  if (!(await verifyCredentials(loginId, password))) {
     return NextResponse.json({ error: "Invalid login ID or password" }, { status: 401 });
   }
 
